@@ -1,8 +1,10 @@
+console.log("Bem Vindo")
 class contaBancaria{
-    constructor(agencia, numero, tipo ){
+    constructor(agencia, numero, tipo, nome){
         this.agencia = agencia;
         this.numero = numero;
         this.tipo = tipo;
+        this.nome = nome;
         this._saldo = 0;
     }
 
@@ -30,9 +32,10 @@ class contaBancaria{
 }
 
 class contaCorrente extends contaBancaria {
-    constructor(agencia, numero,  cartaoCredito){
-        super(agencia, numero,  );
+    constructor(agencia, numero, nome, cartaoCredito){
+        super(agencia, numero);
         this.tipo = 'corrente';
+        this.nome = nome;
         this.cartaoCredito = cartaoCredito;
     }
  get cartaoCredito() {
@@ -45,16 +48,23 @@ class contaCorrente extends contaBancaria {
 }
 
 class contaPoupanca extends contaBancaria {
-    constructor(agencia, numero) {
-        super(agencia, numero);
-        this.tipo = 'poupança';    
+    constructor(agencia, numero, nome)  {
+        super(agencia, numero, nome);
+        this.tipo = 'poupança';   
+        this.nome = nome;
  }
+    sacar(valor){
+        if(valor > this.saldo - (this.saldo * 0.50)){
+            return "Operação negada, porque nesse tipo de conta não pode ser retirado mais do que a metade do saldo"
+        }
+    }
 }
 
 class contaUniversitaria extends contaBancaria {
-    constructor(agencia, numero) {
-        super(agencia, numero);
+    constructor(agencia, numero, nome) {
+        super(agencia, numero, nome);
         this.tipo = 'universitaria';
+        this.nome = nome;
  }
 
  sacar(valor){
