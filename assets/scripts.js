@@ -54,10 +54,12 @@ class contaPoupanca extends contaBancaria {
         this.nome = nome;
  }
     sacar(valor){
-        if(valor > this.saldo - (this.saldo * 0.50)){
-            return "Operação negada, porque nesse tipo de conta não pode ser retirado mais do que a metade do saldo"
-        }
+    if(valor > this.saldo * 0.50){
+        return "Operação Negada"
     }
+
+    return this._saldo = this._saldo - valor
+ }
 }
 
 class contaUniversitaria extends contaBancaria {
@@ -72,6 +74,6 @@ class contaUniversitaria extends contaBancaria {
         return "Operação Negada"
     }
 
-    this._saldo = this._saldo - valor
+   return this._saldo = this._saldo - valor
  }
 }
